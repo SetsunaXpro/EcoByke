@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BikeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,9 +20,7 @@ Route::get('/bike-detail', function () {
     return view('bike-detail');
 });
 
-Route::get('/bikes', function () {
-    return view('bikes');
-});
+Route::get('/bikes', [BikeController::class, 'index']);
 
 Route::get('/customer-dashboard', function () {
     return view('customer-dashboard');

@@ -65,49 +65,23 @@
     <!-- Bike Cards -->
     <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <!-- Card -->
-      <article class="border border-gray-100 rounded-lg p-4 shadow-sm bg-white flex flex-col">
-        <img src="https://cdn.discordapp.com/attachments/778474448663478293/1521432934056460409/504b1a7ef98490396c917ddea1cf772e_cb867ebd-47e1-4c67-a780-f5e4c1535f19.jpg?ex=6a44d056&is=6a437ed6&hm=d7920c51ad1818a0ca05073d46f62dbf62166de6540d8b32e6194aa10d9d469e&" alt="City Commuter" class="w-full h-64 object-cover rounded mb-3" />
-        <h2 class="font-semibold text-sm text-gray-800">City Commuter</h2>
-        <p class="mt-1 text-xs text-gray-500">Battery: 400Wh</p>
-        <p class="mt-1 text-xs text-gray-500">Range: 45km</p>
-        <p class="mt-1 text-sm font-semibold text-green-700">IDR 45k/day</p>
-        <a
-          href="/bike-detail"
-          class="mt-3 inline-block text-xs bg-green-600 text-white px-3 py-1.5 rounded text-center"
-        >
-          Rent Now
-        </a>
-      </article>
+      @foreach($bikes as $bike)
+<div class="border rounded-lg p-4">
+    <h2 class="text-xl font-bold">
+        {{ $bike->name }}
+    </h2>
 
-      <!-- Card -->
-      <article class="border border-gray-100 rounded-lg p-4 shadow-sm bg-white flex flex-col">
-        <img src="https://cdn.discordapp.com/attachments/778474448663478293/1521432932944969738/Artboard_4_copy_7.jpg?ex=6a44d056&is=6a437ed6&hm=187c823932ae2405fb00d57fb6b2af65e51d1d00769340f011b0337fe14b5023&" alt="Mountain Explorer" class="w-full h-64 object-cover rounded mb-3" />
-        <h2 class="font-semibold text-sm text-gray-800">Mountain Explorer</h2>
-        <p class="mt-1 text-xs text-gray-500">Battery: 500Wh</p>
-        <p class="mt-1 text-xs text-gray-500">Range: 60km</p>
-        <p class="mt-1 text-sm font-semibold text-green-700">IDR 120k/day</p>
-        <a
-          href="/bike-detail"
-          class="mt-3 inline-block text-xs bg-green-600 text-white px-3 py-1.5 rounded text-center"
-        >
-          Rent Now
-        </a>
-      </article>
+    <p>{{ $bike->description }}</p>
 
-      <!-- Card -->
-      <article class="border border-gray-100 rounded-lg p-4 shadow-sm bg-white flex flex-col">
-        <img src="https://cdn.discordapp.com/attachments/778474448663478293/1521432933586567299/eovolt-morning-2024-folding-bike-oceanblue-a.jpg?ex=6a44d056&is=6a437ed6&hm=41578fed963f4ebe38f5d388645a4439d16499c7ba62e6fef6e08ff40ee7bc4b&" alt="Compact Foldable" class="w-full h-64 object-cover rounded mb-3" />
-        <h2 class="font-semibold text-sm text-gray-800">Compact Foldable</h2>
-        <p class="mt-1 text-xs text-gray-500">Battery: 300Wh</p>
-        <p class="mt-1 text-xs text-gray-500">Range: 35km</p>
-        <p class="mt-1 text-sm font-semibold text-green-700">IDR 95k/day</p>
-        <a
-          href="/bike-detail"
-          class="mt-3 inline-block text-xs bg-green-600 text-white px-3 py-1.5 rounded text-center"
-        >
-          Rent Now
-        </a>
-      </article>
+    <p>Battery: {{ $bike->battery }}</p>
+
+    <p>Range: {{ $bike->range_km }} km</p>
+
+    <p>
+        ${{ $bike->price_per_day }}/day
+    </p>
+</div>
+@endforeach
     </section>
   </main>
 </body>
