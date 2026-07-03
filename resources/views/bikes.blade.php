@@ -66,21 +66,39 @@
     <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <!-- Card -->
       @foreach($bikes as $bike)
-<div class="border rounded-lg p-4">
-    <h2 class="text-xl font-bold">
+
+<a href="/bike/{{ $bike->id }}">
+
+ <div class="relative border rounded-lg shadow p-4 hover:shadow-lg transition">
+
+
+@php
+$badgeClass = match($bike->tier) {
+    'Silver' => 'bg-gray-300 text-gray-800',
+    'Gold' => 'bg-yellow-400 text-yellow-900',
+    'Premium+' => 'bg-gradient-to-r from-red-500 via-yellow-400 via-green-400 via-blue-500 to-purple-600 text-white',
+    default => 'bg-gray-200 text-gray-800',
+};
+@endphp
+
+<span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold {{ $badgeClass }}">
+    {{ $bike->tier }}
+</span>
+
+    <img
+        src="{{ $bike->image }}"
+        alt="{{ $bike->name }}"
+        class="w-full h-48 object-cover rounded"
+    >
+
+    <h2 class="text-xl font-bold mt-3">
         {{ $bike->name }}
     </h2>
 
-    <p>{{ $bike->description }}</p>
-
-    <p>Battery: {{ $bike->battery }}</p>
-
-    <p>Range: {{ $bike->range_km }} km</p>
-
-    <p>
-        ${{ $bike->price_per_day }}/day
-    </p>
 </div>
+
+</a>
+
 @endforeach
     </section>
   </main>

@@ -8,6 +8,7 @@ class Bike extends Model
 {
     protected $fillable = [
         'name',
+        'tier',
         'description',
         'battery',
         'range_km',

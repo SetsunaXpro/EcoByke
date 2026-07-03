@@ -3,6 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BikeController;
+use App\Models\Bike;
+
+Route::get('/bike/{bike}', function (Bike $bike) {
+    return view('bike-detail', compact('bike'));
+});
 
 Route::get('/', function () {
     return view('welcome');

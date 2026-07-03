@@ -1,0 +1,91 @@
+Bike::create([
+    'name' => 'City Commuter',
+    'description' => 'Affordable for city traffic',
+    'battery' => '400Wh',
+    'range_km' => 45,
+    'price_per_day' => 15,
+    'image' => 'https://ibb.co.com/SXQWCZd0',
+    'status' => 'available'
+]);
+
+Bike::create([
+    'name' => 'Mountain Explorer',
+    'description' => 'Our affordable trailblazing option',
+    'battery' => '400Wh',
+    'range_km' => 45,
+    'price_per_day' => 15,
+    'image' => 'https://ibb.co.com/RkkbKJXc',
+    'status' => 'available'
+]);
+
+Bike::create([
+    'name' => 'Compact Foldable',
+    'description' => 'Compact & affordable',
+    'battery' => '400Wh',
+    'range_km' => 45,
+    'price_per_day' => 15,
+    'image' => 'https://ibb.co.com/r2gWYDg6',
+    'status' => 'available'
+]);
+
+Bike::create([
+    'name' => 'City Commuter',
+    'description' => 'Perfect for city rides',
+    'battery' => '400Wh',
+    'range_km' => 45,
+    'price_per_day' => 15,
+    'image' => '',
+    'status' => 'available'
+]);
+
+Bike::create([
+    'name' => 'Mountain Explorer',
+    'description' => 'Your adventure buddy',
+    'battery' => '400Wh',
+    'range_km' => 45,
+    'price_per_day' => 15,
+    'image' => '',
+    'status' => 'available'
+]);
+
+Bike::create([
+    'name' => 'Compact Foldable',
+    'description' => 'For a smooth and chill ride',
+    'battery' => '400Wh',
+    'range_km' => 45,
+    'price_per_day' => 15,
+    'image' => '',
+    'status' => 'available'
+]);
+
+Bike::create([
+    'name' => 'City Commuter',
+    'description' => 'Slim & comfortable for a busy city',
+    'battery' => '400Wh',
+    'range_km' => 45,
+    'price_per_day' => 15,
+    'image' => '',
+    'status' => 'available'
+]);
+
+Bike::create([
+    'name' => 'City Commuter',
+    'description' => 'Military grade protection for extreme riding',
+    'battery' => '400Wh',
+    'range_km' => 45,
+    'price_per_day' => 15,
+    'image' => '',
+    'status' => 'available'
+]);
+
+Bike::create([
+    'name' => 'City Commuter',
+    'description' => 'Elegant & simplistic design',
+    'battery' => '400Wh',
+    'range_km' => 45,
+    'price_per_day' => 15,
+    'image' => '',
+    'status' => 'available'
+]);
+
+
