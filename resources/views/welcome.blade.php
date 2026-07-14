@@ -70,59 +70,82 @@
   </section>
 
   <!-- Popular Bikes -->
-  <section class="max-w-6xl mx-auto px-4 py-8">
-    <h2 class="text-lg font-semibold mb-4 text-gray-800">Popular Bikes</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      <!-- Card -->
-      <article class="border border-gray-100 rounded-lg p-4 shadow-sm bg-white">
-        <img src="https://cdn.discordapp.com/attachments/778474448663478293/1521432934056460409/504b1a7ef98490396c917ddea1cf772e_cb867ebd-47e1-4c67-a780-f5e4c1535f19.jpg?ex=6a44d056&is=6a437ed6&hm=d7920c51ad1818a0ca05073d46f62dbf62166de6540d8b32e6194aa10d9d469e&" alt="City Commuter" class="w-full h-64 object-cover rounded mb-3" />
-        <h3 class="font-semibold text-sm text-gray-800">City Commuter</h3>
-        <p class="mt-1 text-xs text-gray-500">Battery: 400Wh · Range: 45km</p>
-        <p class="mt-1 text-sm font-semibold text-green-700">IDR 45k/day</p>
-@auth
-    <a href="/bike/{{ $bike->id }}">
-        Rent Now
-    </a>
-@else
-    <a href="{{ route('login') }}">
-        Login to Rent
-    </a>
-@endauth
-      </article>
-      <!-- Card -->
-      <article class="border border-gray-100 rounded-lg p-4 shadow-sm bg-white">
-        <img src="https://cdn.discordapp.com/attachments/778474448663478293/1521432932944969738/Artboard_4_copy_7.jpg?ex=6a44d056&is=6a437ed6&hm=187c823932ae2405fb00d57fb6b2af65e51d1d00769340f011b0337fe14b5023&" alt="Mountain Explorer" class="w-full h-64 object-cover rounded mb-3" />
-        <h3 class="font-semibold text-sm text-gray-800">Mountain Explorer</h3>
-        <p class="mt-1 text-xs text-gray-500">Battery: 500Wh · Range: 60km</p>
-        <p class="mt-1 text-sm font-semibold text-green-700">IDR 120k/day</p>
-@auth
-    <a href="/bike/{{ $bike->id }}">
-        Rent Now
-    </a>
-@else
-    <a href="{{ route('login') }}">
-        Login to Rent
-    </a>
-@endauth
-      </article>
-      <!-- Card -->
-      <article class="border border-gray-100 rounded-lg p-4 shadow-sm bg-white">
-        <img src="https://cdn.discordapp.com/attachments/778474448663478293/1521432933586567299/eovolt-morning-2024-folding-bike-oceanblue-a.jpg?ex=6a44d056&is=6a437ed6&hm=41578fed963f4ebe38f5d388645a4439d16499c7ba62e6fef6e08ff40ee7bc4b&" alt="Compact Foldable" class="w-full h-64 object-cover rounded mb-3" />
-        <h3 class="font-semibold text-sm text-gray-800">Compact Foldable</h3>
-        <p class="mt-1 text-xs text-gray-500">Battery: 300Wh · Range: 35km</p>
-        <p class="mt-1 text-sm font-semibold text-green-700">IDR 95k/day</p>
-@auth
-    <a href="/bike/{{ $bike->id }}">
-        Rent Now
-    </a>
-@else
-    <a href="{{ route('login') }}">
-        Login to Rent
-    </a>
-@endauth
-      </article>
+ <section class="max-w-6xl mx-auto px-4 py-8">
+    <h2 class="text-lg font-semibold mb-4 text-gray-800">
+        Popular Bikes
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        @foreach($bikes as $bike)
+
+        <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
+
+            <img
+                src="{{ $bike->image }}"
+                alt="{{ $bike->name }}"
+                class="w-full h-56 object-cover">
+
+            <div class="p-5">
+
+                <div class="flex justify-between items-start">
+
+                    <h3 class="text-xl font-bold">
+                        {{ $bike->name }}
+                    </h3>
+
+                    @php
+                        $badge = match($bike->tier){
+                            'Silver' =>
+                                'bg-gray-300 text-gray-800',
+
+                            'Gold' =>
+                                'bg-yellow-400 text-yellow-900',
+
+                            'Premium+' =>
+                                'bg-gradient-to-r from-red-500 via-yellow-400 via-green-400 via-blue-500 to-purple-600 text-white',
+
+                            default =>
+                                'bg-gray-300'
+                        };
+                    @endphp
+
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $badge }}">
+                        {{ $bike->tier }}
+                    </span>
+
+                </div>
+
+                <p class="text-gray-500 mt-2">
+                    Battery: {{ $bike->battery }}
+                    •
+                    Range: {{ $bike->range_km }}km
+                </p>
+
+                <p class="mt-2 text-green-700 font-bold text-lg">
+                    IDR {{ number_format($bike->price_per_day * 16000) }}/day
+                </p>
+
+                @auth
+                    <a href="/bike/{{ $bike->id }}"
+                       class="mt-4 inline-block w-full text-center bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">
+                        Rent Now
+                    </a>
+                @else
+                    <a href="{{ route('login') }}"
+                       class="mt-4 inline-block w-full text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                        Login to Rent
+                    </a>
+                @endauth
+
+            </div>
+
+        </div>
+
+        @endforeach
+
     </div>
-  </section>
+</section>
 
   <!-- How It Works -->
   <section class="bg-gray-50">

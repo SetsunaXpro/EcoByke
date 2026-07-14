@@ -10,9 +10,10 @@ Route::get('/bike/{bike}', function (Bike $bike) {
 });
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $bikes = Bike::take(3)->get();
 
+    return view('welcome', compact('bikes'));
+});
 Route::get('/dashboard', function () {
     return redirect('/');
 })->middleware(['auth', 'verified'])->name('dashboard');
