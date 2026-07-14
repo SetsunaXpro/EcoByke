@@ -55,10 +55,9 @@
     <!-- Image Gallery -->
     <section>
       <div class="grid grid-cols-3 gap-2">
-        <img src="https://cdn.discordapp.com/attachments/778474448663478293/1521432934056460409/504b1a7ef98490396c917ddea1cf772e_cb867ebd-47e1-4c67-a780-f5e4c1535f19.jpg?ex=6a44d056&is=6a437ed6&hm=d7920c51ad1818a0ca05073d46f62dbf62166de6540d8b32e6194aa10d9d469e&" alt="City Commuter Main" class="col-span-2 h-32 object-cover rounded" />
+        <img src= {{ $bike->image }} />
         <div class="flex flex-col gap-2">
           <img src="https://via.placeholder.com/200x100?text=Side+1" alt="Side 1" class="h-14 object-cover rounded" />
-          <img src="https://via.placeholder.com/200x100?text=Side+2" alt="Side 2" class="h-14 object-cover rounded" />
         </div>
       </div>
     </section>
@@ -66,34 +65,38 @@
     <!-- Bike Information -->
     <section class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       <div class="space-y-2 text-sm">
-        <h1 class="text-lg font-semibold text-gray-800">City Commuter</h1>
+        <h1 class="text-lg font-semibold text-gray-800">{{ $bike->name }}</h1>
         <p class="text-xs text-gray-500">
-          Comfortable electric bike ideal for daily city rides.
+         {{ $bike->description }}
         </p>
         <div class="mt-2 space-y-1">
-          <p class="text-xs text-gray-600">Battery: <span class="font-medium">400Wh</span></p>
-          <p class="text-xs text-gray-600">Range: <span class="font-medium">45km</span></p>
-          <p class="text-xs text-gray-600">Price: <span class="font-medium text-green-700">IDR 45k/day</span></p>
+          <p class="text-xs text-gray-600">Battery: <span class="font-medium">{{ $bike->battery }}</span></p>
+          <p class="text-xs text-gray-600">Range: <span class="font-medium">{{ $bike->range_km }} km</span></p>
+          <p class="text-xs text-gray-600">Price: <span class="font-medium text-green-700">IDR {{ number_format($bike->price_per_day * 16000) }}/day</span></p>
         </div>
       </div>
 
       <!-- Rental Form -->
-      <form class="space-y-3 text-sm border border-gray-100 rounded-lg p-4 bg-gray-50">
+      <form
+            method="POST"
+            action="{{ route('booking.store', $bike) }}"
+            class="space-y-3 text-sm border border-gray-100 rounded-lg p-4 bg-gray-50">
+
+            @csrf
         <h2 class="font-semibold text-gray-800 mb-1">Book this bike</h2>
         <div>
           <label class="block text-xs text-gray-600 mb-1">Start Date</label>
           <input
             type="date"
-            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
-          />
+            name="start_date"
+            required>
         </div>
         <div>
           <label class="block text-xs text-gray-600 mb-1">End Date</label>
-          <input
+         <input
             type="date"
-            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
-          />
-        </div>
+            name="end_date"
+            required>
         <button
           type="submit"
           class="w-full bg-green-600 text-white text-sm font-medium py-2 rounded-lg"

@@ -14,7 +14,7 @@
 <nav class="flex items-center gap-4 text-sm">
     <a href="/" class="text-gray-700">Home</a>
     <a href="/bikes" class="text-gray-700">Browse Bikes</a>
-
+    
     @auth
 
         <a href="/customer-dashboard" class="text-gray-700">
@@ -51,59 +51,108 @@
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-6 space-y-6 text-sm">
-    <!-- Current Booking -->
-    <section>
-      <h2 class="text-base font-semibold text-gray-800 mb-3">Current Booking</h2>
-      <div class="border border-gray-100 rounded-lg p-4 bg-gray-50 flex flex-col gap-1">
-        <p class="font-medium text-gray-800">City Commuter</p>
-        <p class="text-xs text-gray-600">From: 2024-07-01 · To: 2024-07-03</p>
-        <p class="text-xs text-gray-600">Status: <span class="text-green-700 font-medium">Active</span></p>
-        <p class="text-xs text-gray-600">Total: <span class="font-medium">Rp 45000</span></p>
-      </div>
-    </section>
+<main class="max-w-6xl mx-auto px-4 py-8">
 
-    <!-- Past Bookings -->
-    <section>
-      <h2 class="text-base font-semibold text-gray-800 mb-3">Past Bookings</h2>
-      <div class="space-y-2">
-        <div class="border border-gray-100 rounded-lg p-3 flex justify-between items-center">
-          <div>
-            <p class="text-xs font-medium text-gray-800">Mountain Explorer</p>
-            <p class="text-xs text-gray-500">2024-06-10 · 2024-06-12</p>
-          </div>
-          <p class="text-xs text-gray-600">Rp 120000</p>
-        </div>
-        <div class="border border-gray-100 rounded-lg p-3 flex justify-between items-center">
-          <div>
-            <p class="text-xs font-medium text-gray-800">Compact Foldable</p>
-            <p class="text-xs text-gray-500">2024-05-02 · 2024-05-03</p>
-          </div>
-          <p class="text-xs text-gray-600">Rp 95000</p>
-        </div>
-      </div>
-    </section>
+<h1 class="text-3xl font-bold mb-6">
+    My Bookings
+</h1>
 
-    <!-- Payment History -->
-    <section>
-      <h2 class="text-base font-semibold text-gray-800 mb-3">Payment History</h2>
-      <div class="space-y-2">
-        <div class="border border-gray-100 rounded-lg p-3 flex justify-between items-center">
-          <div>
-            <p class="text-xs text-gray-600">Invoice #1024</p>
-            <p class="text-xs text-gray-500">Paid on 2024-06-12</p>
-          </div>
-          <p class="text-xs text-gray-700 font-medium">Rp 45000</p>
-        </div>
-        <div class="border border-gray-100 rounded-lg p-3 flex justify-between items-center">
-          <div>
-            <p class="text-xs text-gray-600">Invoice #1018</p>
-            <p class="text-xs text-gray-500">Paid on 2024-05-03</p>
-          </div>
-          <p class="text-xs text-gray-700 font-medium">Rp 95000</p>
-        </div>
-      </div>
-    </section>
-  </main>
+@if(session('success'))
+<div class="bg-green-100 text-green-700 p-3 rounded mb-5">
+    {{ session('success') }}
+</div>
+@endif
+
+@if($bookings->isEmpty())
+
+<div class="text-center py-20">
+
+    <h2 class="text-2xl font-semibold mb-2">
+        No bookings yet
+    </h2>
+
+    <p class="text-gray-500 mb-6">
+        Rent your first bike!
+    </p>
+
+    <a href="/bikes"
+       class="bg-green-600 text-white px-5 py-2 rounded">
+        Browse Bikes
+    </a>
+
+</div>
+
+@else
+
+<div class="space-y-6">
+
+@foreach($bookings as $booking)
+
+<div class="border rounded-xl shadow bg-white p-5">
+
+<div class="flex justify-between">
+
+<div>
+
+<h2 class="text-xl font-bold">
+{{ $booking->bike->name }}
+</h2>
+
+<p class="text-gray-600">
+{{ $booking->start_date }}
+—
+{{ $booking->end_date }}
+</p>
+
+<p class="mt-2">
+Total:
+<strong>
+Rp {{ number_format($booking->total_price,0,',','.') }}
+</strong>
+</p>
+
+</div>
+
+<div>
+
+@if($booking->status == 'pending')
+
+<span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
+Pending
+</span>
+
+@elseif($booking->status == 'approved')
+
+<span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
+Approved
+</span>
+
+@elseif($booking->status == 'active')
+
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">
+Active
+</span>
+
+@elseif($booking->status == 'completed')
+
+<span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full">
+Completed
+</span>
+
+@endif
+
+</div>
+
+</div>
+
+</div>
+
+@endforeach
+
+</div>
+
+@endif
+
+</main>
 </body>
 </html>

@@ -17,7 +17,7 @@ class Bike extends Model
         'status',
     ];
     public function bookings()
-{
-    return $this->hasMany(Booking::class);
-}
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

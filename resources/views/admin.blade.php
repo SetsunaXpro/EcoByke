@@ -63,6 +63,148 @@
         <h3>Total Bookings</h3>
         <p>{{ $totalBookings }}</p>
     </div>
+    <h2 class="text-lg font-bold mt-8 mb-4">
+Recent Users
+</h2>
+
+<table class="w-full border">
+    <thead class="bg-gray-100">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Joined</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    @foreach($recentUsers as $user)
+
+    <tr class="border-t">
+
+        <td>{{ $user->name }}</td>
+
+        <td>{{ $user->email }}</td>
+
+        <td>{{ $user->created_at->diffForHumans() }}</td>
+
+    </tr>
+
+    @endforeach
+
+    </tbody>
+
+</table>
+
+
+<h2 class="text-lg font-bold mt-8">
+Available Bikes
+</h2>
+
+<table class="w-full">
+
+@foreach($availableBikes as $bike)
+
+<tr>
+
+<td>{{ $bike->name }}</td>
+
+<td>{{ $bike->tier }}</td>
+
+<td>
+
+<span class="text-green-600">
+
+{{ $bike->status }}
+
+</span>
+
+</td>
+
+</tr>
+
+@endforeach
+
+</table>
+
+<h2 class="text-lg font-bold mt-8">
+Pending Bookings
+</h2>
+
+<table class="w-full">
+
+<thead>
+
+<tr>
+
+<th>User</th>
+
+<th>Bike</th>
+
+<th>Dates</th>
+
+<th>Status</th>
+
+<th></th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+@foreach($pendingBookings as $booking)
+
+<tr>
+
+<td>{{ $booking->user->name }}</td>
+
+<td>{{ $booking->bike->name }}</td>
+
+<td>
+
+{{ $booking->start_date }}
+
+-
+
+{{ $booking->end_date }}
+
+</td>
+
+<td>
+
+{{ ucfirst($booking->status) }}
+
+</td>
+
+<td>
+
+<form
+method="POST"
+action="{{ route('booking.accept',$booking) }}">
+
+@csrf
+
+@method('PATCH')
+
+<button
+class="bg-green-600 text-white px-3 py-1 rounded">
+
+Accept
+
+</button>
+
+</form>
+
+</td>
+
+</tr>
+
+@endforeach
+
+</tbody>
+
+</table>
 
 </div>
 

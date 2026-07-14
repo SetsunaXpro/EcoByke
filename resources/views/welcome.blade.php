@@ -27,7 +27,9 @@
             </a>
         @endif
 
-        <form method="POST" action="{{ route('logout') }}" class="inline">
+        <form method="POST"
+              action="{{ route('logout') }}"
+              class="inline">
             @csrf
             <button type="submit" class="text-red-600">
                 Logout
