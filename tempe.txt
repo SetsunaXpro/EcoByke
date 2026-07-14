@@ -1,90 +1,99 @@
 Bike::create([
     'name' => 'City Commuter',
+    'tier' => 'Silver',
     'description' => 'Affordable for city traffic',
     'battery' => '400Wh',
     'range_km' => 45,
     'price_per_day' => 15,
-    'image' => 'https://ibb.co.com/SXQWCZd0',
+    'image' => 'https://i.ibb.co.com/RphZwJBP/504b1a7ef98490396c917ddea1cf772e-cb867ebd-47e1-4c67-a780-f5e4c1535f19.jpg',
     'status' => 'available'
 ]);
 
 Bike::create([
     'name' => 'Mountain Explorer',
+    'tier' => 'Silver',
     'description' => 'Our affordable trailblazing option',
     'battery' => '400Wh',
     'range_km' => 45,
     'price_per_day' => 15,
-    'image' => 'https://ibb.co.com/RkkbKJXc',
+    'image' => 'https://i.ibb.co.com/Q33QVxWM/Artboard-4-copy-7.jpg',
     'status' => 'available'
 ]);
 
 Bike::create([
     'name' => 'Compact Foldable',
+    'tier' => 'Silver',
     'description' => 'Compact & affordable',
     'battery' => '400Wh',
     'range_km' => 45,
     'price_per_day' => 15,
-    'image' => 'https://ibb.co.com/r2gWYDg6',
+    'image' => 'https://i.ibb.co.com/TMZC69Z8/eovolt-morning-2024-folding-bike-oceanblue-a.jpg',
     'status' => 'available'
 ]);
 
 Bike::create([
     'name' => 'City Commuter',
+    'tier' => 'Gold',
     'description' => 'Perfect for city rides',
     'battery' => '400Wh',
     'range_km' => 45,
     'price_per_day' => 15,
-    'image' => '',
+    'image' => 'https://i.ibb.co.com/fG165906/Jack-Red-2000x.jpg',
     'status' => 'available'
 ]);
 
 Bike::create([
     'name' => 'Mountain Explorer',
+    'tier' => 'Gold',
     'description' => 'Your adventure buddy',
     'battery' => '400Wh',
     'range_km' => 45,
     'price_per_day' => 15,
-    'image' => '',
+    'image' => 'https://i.ibb.co.com/bjS9b4WX/scrambler-B-side1-1.webp',
     'status' => 'available'
 ]);
 
 Bike::create([
     'name' => 'Compact Foldable',
+    'tier' => 'Gold',
     'description' => 'For a smooth and chill ride',
     'battery' => '400Wh',
     'range_km' => 45,
     'price_per_day' => 15,
-    'image' => '',
+    'image' => 'https://i.ibb.co.com/Vp3LT3N6/image.png',
     'status' => 'available'
 ]);
 
 Bike::create([
     'name' => 'City Commuter',
+    'tier' => 'Premium+',
     'description' => 'Slim & comfortable for a busy city',
     'battery' => '400Wh',
     'range_km' => 45,
     'price_per_day' => 15,
-    'image' => '',
+    'image' => 'https://i.ibb.co.com/MD703KP1/Last-Mile-SF-Marin-NYC-Macfox-electric-bikes-model-X7-Ebike-color-black-single-battery-01-2000x.png',
     'status' => 'available'
 ]);
 
 Bike::create([
-    'name' => 'City Commuter',
+    'name' => 'Mountain Explorer',
+    'tier' => 'Premium+',
     'description' => 'Military grade protection for extreme riding',
     'battery' => '400Wh',
     'range_km' => 45,
     'price_per_day' => 15,
-    'image' => '',
+    'image' => 'https://i.ibb.co.com/TqHHxgSK/Screenshot2025-02-19at2-46-03-PM-2000x.webp',
     'status' => 'available'
 ]);
 
 Bike::create([
-    'name' => 'City Commuter',
+    'name' => 'Compact Foldable',
+    'tier' => 'Premium+',
     'description' => 'Elegant & simplistic design',
     'battery' => '400Wh',
     'range_km' => 45,
     'price_per_day' => 15,
-    'image' => '',
+    'image' => 'https://i.ibb.co.com/8QgW6ms/gocycle-cx-grey-1264x1264.png',
     'status' => 'available'
 ]);
 

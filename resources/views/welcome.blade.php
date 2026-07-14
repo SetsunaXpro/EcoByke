@@ -11,12 +11,43 @@
   <header class="border-b border-gray-100 bg-white">
     <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
       <a href="/" class="font-semibold text-lg text-green-700">EcoByke</a>
-      <nav class="flex items-center gap-4 text-sm">
-        <a href="/" class="text-gray-700">Home</a>
-        <a href="/bikes" class="text-gray-700">Browse Bikes</a>
-        <a href="/customer-dashboard" class="text-gray-700">My Bookings</a>
-        <a href="/admin" class="text-gray-700">Admin</a>
-      </nav>
+<nav class="flex items-center gap-4 text-sm">
+    <a href="/" class="text-gray-700">Home</a>
+    <a href="/bikes" class="text-gray-700">Browse Bikes</a>
+
+    @auth
+
+        <a href="/customer-dashboard" class="text-gray-700">
+            My Bookings
+        </a>
+
+        @if(auth()->user()->role === 'admin')
+            <a href="/admin" class="text-gray-700">
+                Admin
+            </a>
+        @endif
+
+        <form method="POST" action="{{ route('logout') }}" class="inline">
+            @csrf
+            <button type="submit" class="text-red-600">
+                Logout
+            </button>
+        </form>
+
+    @else
+
+        <a href="{{ route('login') }}"
+           class="text-green-600 font-medium">
+            Login
+        </a>
+
+        <a href="{{ route('register') }}"
+           class="bg-green-600 text-white px-3 py-1 rounded">
+            Register
+        </a>
+
+    @endauth
+</nav>
     </div>
   </header>
 
@@ -48,12 +79,15 @@
         <h3 class="font-semibold text-sm text-gray-800">City Commuter</h3>
         <p class="mt-1 text-xs text-gray-500">Battery: 400Wh · Range: 45km</p>
         <p class="mt-1 text-sm font-semibold text-green-700">IDR 45k/day</p>
-        <a
-          href="/bike-detail"
-          class="mt-3 inline-block text-xs bg-green-600 text-white px-3 py-1.5 rounded"
-        >
-          Rent Now
-        </a>
+@auth
+    <a href="/bike/{{ $bike->id }}">
+        Rent Now
+    </a>
+@else
+    <a href="{{ route('login') }}">
+        Login to Rent
+    </a>
+@endauth
       </article>
       <!-- Card -->
       <article class="border border-gray-100 rounded-lg p-4 shadow-sm bg-white">
@@ -61,12 +95,15 @@
         <h3 class="font-semibold text-sm text-gray-800">Mountain Explorer</h3>
         <p class="mt-1 text-xs text-gray-500">Battery: 500Wh · Range: 60km</p>
         <p class="mt-1 text-sm font-semibold text-green-700">IDR 120k/day</p>
-        <a
-          href="/bike-detail"
-          class="mt-3 inline-block text-xs bg-green-600 text-white px-3 py-1.5 rounded"
-        >
-          Rent Now
-        </a>
+@auth
+    <a href="/bike/{{ $bike->id }}">
+        Rent Now
+    </a>
+@else
+    <a href="{{ route('login') }}">
+        Login to Rent
+    </a>
+@endauth
       </article>
       <!-- Card -->
       <article class="border border-gray-100 rounded-lg p-4 shadow-sm bg-white">
@@ -74,12 +111,15 @@
         <h3 class="font-semibold text-sm text-gray-800">Compact Foldable</h3>
         <p class="mt-1 text-xs text-gray-500">Battery: 300Wh · Range: 35km</p>
         <p class="mt-1 text-sm font-semibold text-green-700">IDR 95k/day</p>
-        <a
-          href="/bike-detail"
-          class="mt-3 inline-block text-xs bg-green-600 text-white px-3 py-1.5 rounded"
-        >
-          Rent Now
-        </a>
+@auth
+    <a href="/bike/{{ $bike->id }}">
+        Rent Now
+    </a>
+@else
+    <a href="{{ route('login') }}">
+        Login to Rent
+    </a>
+@endauth
       </article>
     </div>
   </section>

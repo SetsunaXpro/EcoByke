@@ -46,6 +46,26 @@
           <p class="text-xs text-gray-500 mb-1">Available Bikes</p>
           <p class="text-xl font-semibold text-gray-800">34</p>
         </div>
+
+        <div class="grid grid-cols-3 gap-4">
+
+    <div class="p-4 border rounded">
+        <h3>Total Users</h3>
+        <p>{{ $totalUsers }}</p>
+    </div>
+
+    <div class="p-4 border rounded">
+        <h3>Total Bikes</h3>
+        <p>{{ $totalBikes }}</p>
+    </div>
+
+    <div class="p-4 border rounded">
+        <h3>Total Bookings</h3>
+        <p>{{ $totalBookings }}</p>
+    </div>
+
+</div>
+
       </section>
     </main>
   </div>

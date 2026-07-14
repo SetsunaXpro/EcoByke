@@ -18,9 +18,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin', function () {
-    return view('admin');
-});
 
+    if (auth()->user()->role !== 'admin') {
+        abort(403);
+    }
+
+    return view('admin');
+
+})->middleware('auth');
 Route::get('/bike-detail', function () {
     return view('bike-detail');
 });
@@ -29,7 +34,7 @@ Route::get('/bikes', [BikeController::class, 'index']);
 
 Route::get('/customer-dashboard', function () {
     return view('customer-dashboard');
-});
+})->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
